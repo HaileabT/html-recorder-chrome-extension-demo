@@ -13,5 +13,6 @@ npm i
 4. Go to extensions
 5. Enable developer mode
 6. Hit load unpacked
-7. Pin the plugin with the name RRWEB Recorder
+7. Load the cloned project
+8. Pin the plugin with the name RRWEB Recorder (more convenient that way)
 8. Play around with it
