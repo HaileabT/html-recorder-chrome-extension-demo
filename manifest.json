@@ -1,0 +1,19 @@
+{
+  "name": "RRWEB Recorder",
+  "description": "This is an html recorder based on rrweb recorder",
+  "permissions": ["scripting", "tabs", "storage", "activeTab"],
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "host_permissions": ["<all_urls>"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'",
+    "sandbox": "sandbox allow-scripts; script-src 'self' <all_urls>"
+  }
+}
