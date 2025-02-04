@@ -6,6 +6,8 @@
 //   });
 // };
 
+import { getStoredAppStates, resetIsRecordingState, setIsRecordingState } from "./utils/storageHelpers.js";
+
 // injectRRWebScript();
 
 let events = [];
@@ -14,24 +16,40 @@ let screenshot;
 const recordEl = document.getElementById("record");
 const stopRecordingEl = document.getElementById("stop-recording");
 const screenshotEl = document.getElementById("screenshot-btn");
-stopRecordingEl.style.display = "none";
-recordEl.style.display = "block";
 
-recordEl.addEventListener("click", () => {
+const setRecordingStateOnTheDOM = async () => {
+  const { appStates } = await getStoredAppStates();
+
+  console.log("DOM UPDATER RAN", appStates);
+  if (appStates.isRecording) {
+    stopRecordingEl.style.display = "block";
+    recordEl.style.display = "none";
+  } else {
+    stopRecordingEl.style.display = "none";
+    recordEl.style.display = "block";
+  }
+};
+
+setRecordingStateOnTheDOM();
+
+recordEl.addEventListener("click", async () => {
   stopRecordingEl.style.display = "block";
   recordEl.style.display = "none";
+  await setIsRecordingState();
   chrome.runtime.sendMessage({ message: "RECORD" });
+});
+
+stopRecordingEl.addEventListener("click", async () => {
+  stopRecordingEl.style.display = "none";
+  recordEl.style.display = "block";
+  await resetIsRecordingState();
+  chrome.runtime.sendMessage({ message: "STOP RECORDING" });
 });
 
 screenshotEl.addEventListener("click", () => {
   chrome.runtime.sendMessage({ message: "SCREENSHOT" });
 });
 
-stopRecordingEl.addEventListener("click", () => {
-  stopRecordingEl.style.display = "none";
-  recordEl.style.display = "block";
-  chrome.runtime.sendMessage({ message: "STOP RECORDING" });
-});
 chrome.runtime.sendMessage({ message: "RUN" });
 
 chrome.runtime.onMessage.addListener(({ message }) => {
