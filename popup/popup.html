@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="thirdParty/rrweb-replay.css" />
     <link rel="stylesheet" href="popup.css" />
     <script src="thirdParty/rrweb-replay.js"></script>
-    <!-- <script src="thirdParty/rrweb-snapshot.js"></script> -->
+    <script src="thirdParty/rrweb-snapshot.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -14,7 +14,10 @@
       <button class="btn" id="record">Record</button>
       <button class="btn" id="stop-recording">Stop Recording</button>
       <butotn class="btn" id="screenshot-btn">Take Screenshot</butotn>
+      <h2 class="box-title">Replay will be appended in this box</h2>
       <div class="replayer-container"></div>
+      <h2 class="box-title">Screenshot will be displayed in this box</h2>
+      <iframe id="snapshot-container" class="snapshot-container"></iframe>
     </div>
     <script src="popup.js" type="module"></script>
   </body>

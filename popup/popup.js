@@ -51,7 +51,13 @@ chrome.runtime.onMessage.addListener(({ message }) => {
 
     replayer.play();
   } else if (message.text === "SCREENSHOT TAKEN") {
-    console.log(message.data);
     screenshot = message.data;
+    console.log(screenshot);
+    const iframe = document.querySelector(".snapshot-container");
+
+    const nodeMap = new Map();
+    const updatedNode = rrwebSnapshot.rebuild(screenshot, { doc: iframe.contentDocument });
+
+    console.log(updatedNode.childNodes[1].childNodes[2]);
   }
 });
