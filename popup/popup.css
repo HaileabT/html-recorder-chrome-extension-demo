@@ -26,8 +26,8 @@ body {
 }
 
 .replayer-container {
-    width: 600px !important;
-    height: 336px !important;
+    width: 900px !important;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     display: flex;
     align-items: center;

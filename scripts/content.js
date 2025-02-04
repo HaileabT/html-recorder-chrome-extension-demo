@@ -108,6 +108,23 @@ chrome.runtime.onMessage.addListener(async ({ message }, sender, sendResponse) =
         console.log(actualEventsCount);
         await appendEventToStorage(event);
       },
+
+      sampling: {
+        scroll: 100,
+        input: "last",
+        mousemove: false,
+
+        mouseInteraction: {
+          MouseUp: false,
+          MouseDown: false,
+          ContextMenu: false,
+          Focus: false,
+          TouchStart: false,
+          TouchEnd: false,
+          Click: true,
+          DblClick: true,
+        },
+      },
       // checkoutEveryNms: 200,
     });
   } else if (message === "STOP RECORDING") {
