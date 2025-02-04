@@ -10,6 +10,7 @@ chrome.runtime.onMessage.addListener(({ message }, sender, sendResponse) => {
     });
   } else if (message === "STOP RECORDING") {
     if (window.stopRecording) {
+      console.log(window.rrwebEvents);
       chrome.runtime.sendMessage({ message: { text: "RECORDED DATA", data: window.rrwebEvents } });
       //   console.log(window.rrwebEvents);
       window.stopRecording();

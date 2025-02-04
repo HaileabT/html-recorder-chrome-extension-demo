@@ -41,6 +41,7 @@ chrome.runtime.onMessage.addListener(({ message }) => {
     events = message.data;
 
     console.log(rrwebReplay);
+    document.querySelector(".replayer-container").innerHTML = "";
     const replayer = new rrwebReplay.Replayer(events, {
       UNSAFE_replayCanvas: true,
       root: document.querySelector(".replayer-container") ?? document.body,
@@ -56,6 +57,7 @@ chrome.runtime.onMessage.addListener(({ message }) => {
     const iframe = document.querySelector(".snapshot-container");
 
     const nodeMap = new Map();
+    iframe.contentDocument.innerHTML = "";
     const updatedNode = rrwebSnapshot.rebuild(screenshot, { doc: iframe.contentDocument });
 
     console.log(updatedNode.childNodes[1].childNodes[2]);
