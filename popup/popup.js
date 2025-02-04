@@ -58,7 +58,7 @@ chrome.runtime.onMessage.addListener(({ message }) => {
     console.log(message.data);
     events = message.data;
 
-    console.log(rrwebReplay);
+    console.log("EVENTS FROM THE RRWEB RECORDER", events);
     document.querySelector(".replayer-container").innerHTML = "";
     const replayer = new rrwebReplay.Replayer(events, {
       UNSAFE_replayCanvas: true,
